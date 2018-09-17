@@ -19,7 +19,25 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'qHFjvihuNGEEFsfnMXTfptvIOlhKhyYwxLnqOsBdGvnuyEZIheApQGOXWeXoLWiDQNJFa'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
+import re
 
+result = re.findall(r'[a-z]+', line)
+print(result)
+
+lis = []
+new_lis = []
+for x in line:
+    if x.islower() is True:
+       lis.append(x)
+       #print(x)
+    else:
+        y = ''
+        for i in lis:
+            y = y + i
+        new_lis.append(y)
+        lis = []
+        #y = ''
+print(new_lis)
 
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
@@ -44,7 +62,8 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'uXBqHFjvihuNGEEFsfnMXTfptvIOlhKhyYwxLnqOsBdGvnuyEZIheApQGOXWeXoLWiDQN'\
        'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
-
+result = re.findall(r'[a-z]{2}([A-Z]+)[A-Z]{2}[a-z]', line_2)
+print(result)
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
 # произвольными целыми цифрами, в результате в файле должно быть
