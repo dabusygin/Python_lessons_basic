@@ -13,3 +13,19 @@
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
+
+import mymodule
+
+print('1. Перейти в папку \n2. Просмотреть содержимое текущей папки \n3. Удалить папку \n4. Создать папку')
+answer = int(input('Выберите опцию: '))
+if answer == 1:
+    print(os.getcwd())
+elif answer == 2:
+    print("Файлы текущей директории: ")
+    mymodule.dir_name()
+elif answer == 3:
+    mymodule.delete_dir()
+elif answer == 4:
+    mymodule.create_dir()
+else:
+    print("Такого я не могу")
