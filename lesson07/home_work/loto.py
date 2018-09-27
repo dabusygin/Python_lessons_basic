@@ -57,3 +57,104 @@
 модуль random: http://docs.python.org/3/library/random.html
 
 """
+
+import random
+
+def space_ins(lot, lot_begin, lot_end):
+    a = sorted(lot[lot_begin:lot_end])
+    y = 0
+    while y != 4:
+        x = random.randint(0, len(lot_1))
+        a.insert(x, ' ')
+        y += 1
+    return a
+
+def random_sample():
+    x = []
+    sample = list(range(1, 90))
+    random.shuffle(sample)
+    for number in sample:
+        x.append(number)
+    return x
+
+
+game = int(random.randint(1, 90))
+
+def serche_pos(number, a):
+    for x in a:
+        if x == number:
+            z = a.index(x)
+            x = '-'
+            a[z] = x
+    return a
+
+def lot():
+    lot = set()
+    while len(lot) < 15:
+        y = random.randint(1, 90)
+        lot.add(y)
+    lot = list(lot)
+    return lot
+
+def print_information(x, a, b, c):
+    print('-' * 10, x, '-' * 10)
+    print(a)
+    print(b)
+    print(c)
+    print('-' * 35)
+
+
+lot_1 = lot()
+lot_2 = lot()
+
+a = space_ins(lot_1, 0, 5)
+b = space_ins(lot_1, 5, 10)
+c = space_ins(lot_1, 10, 16)
+
+d = space_ins(lot_2, 0, 5)
+e = space_ins(lot_2, 5, 10)
+f = space_ins(lot_2, 10, 16)
+
+u = random_sample()
+cycle = 0
+true_hum = 0
+true_com = 0
+victory_hum = 0
+victory_com = 0
+while cycle < 90:
+    for v in a + b + c:
+        v = str(v)
+        if v.isdigit():
+            true_hum += 1
+    for v in d + e + f:
+        v = str(v)
+        if v.isdigit():
+            true_com += 1
+    if victory_hum < true_hum and victory_com < true_com:
+        victory_hum = true_hum
+        victory_com = true_com
+        number = u[cycle]
+        print('Бочонок: ', number)
+        print_information('Ваша карточка', a, b, c)
+        print_information('Соперник', d, e, f)
+        if number in d + e + f:
+            serche_pos(number, d)
+            serche_pos(number, e)
+            serche_pos(number, f)
+        pas = input("Зачеркнуть(Y) или продолжить(N)?: ")
+        if pas == 'Y' and number in a + b + c:
+            serche_pos(number, a)
+            serche_pos(number, b)
+            serche_pos(number, c)
+            cycle += 1
+        elif pas == 'N' and number not in a + b + c:
+            cycle += 1
+        else:
+            print('Вы проиграли')
+            break
+    elif victory_hum == true_hum:
+        print("Вы выиграли")
+        break
+    elif victory_com == true_com:
+        print("Соперник выиграл")
+        break
